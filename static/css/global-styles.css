@@ -64,6 +64,8 @@ ul {
   padding: 0;
   align-self: start;
   line-height: 110%;
+  margin-bottom: 1vh;
+  margin-right: 1vw;
 }
 
   .checkbox_button{
@@ -128,9 +130,8 @@ new todo form
       }
     
         .add_button:hover img {
-          content: url('/static/icons/checked.png');
-          width: inherit;
-          height: inherit;
+          width: 1.6rem;
+          height: 1.6rem;
         }
 /* 
 Nav bar
