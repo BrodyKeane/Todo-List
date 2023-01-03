@@ -1,0 +1,206 @@
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #333;
+  color: #e8eaed;
+  letter-spacing: .00625em;
+  font-family: Roboto,Arial,sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+  min-width: 800px
+}
+
+footer {
+  position: fixed;
+  bottom: 0; /* position the footer at the bottom of the viewport */
+  width: 100%; /* make the footer span the full width of the page */
+  background: linear-gradient(#333, #222) bottom, #fff; /* create a gradient that fades from the footer color to the page color */
+  color: white;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+  /* Center the footer content */
+  .footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+
+h1 {
+    font-size: 3rem;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 5vh;
+    border-bottom: 1px solid gray;
+}
+
+ul {
+    list-style-type: none;
+  }
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+#todo_list{
+  margin: 7vh 30vw 10vh 30vw;
+  padding: .5vw;
+  border: 1px solid gray;
+  border-radius: 8px;
+}
+
+/* todo flex container */
+
+.todo{
+  display: flex;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  padding: 0;
+  align-self: start;
+  line-height: 110%;
+}
+
+  .checkbox_button{
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+    margin-bottom: 2vh;
+    margin-right: .5vw;
+  }
+
+    .checkbox_button:hover img {
+      content: url('/static/icons/checked.png');
+      width: inherit;
+      height: inherit;
+    }
+
+/* 
+new todo form 
+*/
+
+#new_todo_form{
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  height: 4vh;
+}
+
+  .add_todo{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 0 2vw;
+  }
+
+    form input[type="text"] {
+      background-color: #333;
+      border: none;
+      color: #e8eaed;
+      font-size: 1.5rem;
+      flex-grow: 1;
+      padding-left: 1vw;
+    }
+
+      form input[type="text"]:focus{
+        all: inherit;
+        margin: 0;
+        padding-left: 1vw;
+        flex-grow: 1;
+      }
+
+      .add_button{
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        width: 1.5rem;
+        height: 1.5rem;
+        padding: 0;
+        margin-right: .5vw;
+
+      }
+    
+        .add_button:hover img {
+          content: url('/static/icons/checked.png');
+          width: inherit;
+          height: inherit;
+        }
+/* 
+Nav bar
+*/
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #333;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+  
+  nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav li {
+    flex: 1;
+  }
+  
+  nav a {
+    color: white;
+    display: block;
+    padding: 16px;
+    text-align: center;
+
+  }
+  
+  nav a:hover {
+    background-color: #444;
+  }
+
+/* 
+Anchor elements
+*/
+
+a {
+padding: 0.5em 1em;
+color: lightgrey;
+text-decoration: none;
+}
+  
+    a:hover {
+        color: white;
+    }
+
+    a:active {
+        text-decoration: underline;
+    }
+
+
+  
+@media screen and (max-width: 1024px) {
+  #body {
+    min-width: 70vw;
+  }
+  #todo_list{
+    margin: 5vw 5vw 5vw 5vw;
+  }
+}
+
+
+  
+    
+    
+    
+    
+  

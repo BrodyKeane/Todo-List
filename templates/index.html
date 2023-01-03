@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section id="todo_list">
+  <h1>Todo List</h1>
+
+
+  <!-- display the list of todos -->
+  <ul>
+    {% for todo in todos %}
+    <li>
+      <!-- create a delete button for each todo -->
+      <form action="{{ url_for('delete', index=loop.index0) }}" method="POST">
+        <div class="todo">
+          <button type="submit" class="checkbox_button">
+            <img class="icon" src="/static/icons//unchecked.png" alt="Remove Todo" width="100%" height="100%">
+          </button>
+          <a class="todo" href="{{ url_for('todo_details', index=loop.index0) }}">{{ todo }}</a>
+        </div>
+        </form>          
+    </li>
+    {% endfor %}
+  </ul>
+
+  <!-- display the form for adding new todos -->
+  <form action="/submit" method="POST" novalidate id="new_todo_form" spellcheck="false" autocomplete="off">
+    {{ form.hidden_tag() }}
+    <div class="add_todo">
+      <button type="submit" class="add_button">
+        <img class="icon" src="/static/icons/add.png" alt="add todo" width="100%" height="100%">
+      </button>
+      {{ form.todo(autofocus=autofocus) }}
+    </div>
+  </form>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('[name="todo"]').addEventListener('keypress', function(event) {
+      this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);
+    });
+  });
+</script>
+{% endblock %}
+
+
