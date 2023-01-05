@@ -87,7 +87,7 @@ def delete_todo(index):
         todos_details_dict.pop(todos[index])
         completed_todos[index].pop(index)
     return redirect(url_for('completed_list'))
-    
+
 if __name__ == '__main__':
     app.run(debug=True)
 

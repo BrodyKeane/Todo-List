@@ -2,29 +2,29 @@
 {% block content %}
 
 <section class="todo_list">
-    <h1>Completed Todo List</h1>
-  
-    <!-- display the list of todos -->
-    <ul>
-      {% for todo in completed_todos %}
-      <li>
-        <!-- create a complete button for each todo -->
-        <form action="{{ url_for('restore', index=loop.index0) }}" method="POST">
-          <div class="todo_container">
-            <button type="submit" class="retore_button">
-              <img class="icon" src="/static/icons/restore.png" alt="Remove Todo" width="100%" height="100%">
-            </button>
-            <a class="todo" href="{{ url_for('todo_details', index=loop.index0, completed='True') }}">{{ todo }}</a>
-            <form class="delete" action="{{ url_for('delete_todo', index=loop.index0) }}">
-              <button type="submit" class="delete_button">
-                <img class="icon" src="/static/icons/delete.png" alt="Delete Todo" width="100%" height="100%">
-              </button>
-            </form>
-          </div>
-          </form>          
-      </li>
-      {% endfor %}
-    </ul>
+  <h1>Completed Todo List</h1>
 
+  <!-- display the list of todos -->
+  <ul>
+    {% for todo in completed_todos %}
+    <li>
+      <!-- create a complete button for each todo -->
+      <form action="{{ url_for('restore', index=loop.index0) }}" method="POST">
+        <div class="todo_container">
+          <button type="submit" class="retore_button">
+            <img class="icon" src="/static/icons/restore.png" alt="Remove Todo" width="100%" height="100%">
+          </button>
+          <a class="todo" href="{{ url_for('todo_details', index=loop.index0, completed='True') }}">{{ todo }}</a>
+          <form class="delete" action="{{ url_for('delete_todo', index=loop.index0) }}">
+            <button type="submit" class="delete_button">
+              <img class="icon" src="/static/icons/delete.png" alt="Delete Todo" width="100%" height="100%">
+            </button>
+          </form>
+        </div>
+        </form>          
+    </li>
+    {% endfor %}
+  </ul>
+</section>
 
 {% endblock %}
