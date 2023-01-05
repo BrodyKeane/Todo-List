@@ -16,7 +16,7 @@ completed_todos = []
 @app.route('/', methods=['GET'])
 def main_list():
     return render_template('main_list.html', form=TodoForm(), todos=todos, autofocus=True)
-  
+   
 #route for adding a todo. should only accept unique todos
 @app.route('/submit', methods=['POST'])
 def submit():
