@@ -96,7 +96,7 @@ ul {
     justify-self: flex-end;
   }
 
-    .retore_button,
+    .restore_button,
     .delete_button{
     background: transparent;
     border: none;
@@ -109,7 +109,7 @@ ul {
 
 
 
-    .retore_button:hover img,
+    .restore_button:hover img,
     .delete_button:hover img {
       width: 1.6rem;
       height: 1.6rem;
