@@ -16,7 +16,7 @@ completed_todos = []
 @app.route('/', methods=['GET'])
 def main_list():
     return render_template('main_list.html', form=TodoForm(), todos=todos, autofocus=True)
-
+  
 #route for adding a todo. should only accept unique todos
 @app.route('/submit', methods=['POST'])
 def submit():
@@ -87,7 +87,7 @@ def delete_todo(index):
         todos_details_dict.pop(todos[index])
         completed_todos[index].pop(index)
     return redirect(url_for('completed_list'))
-  
+    
 if __name__ == '__main__':
     app.run(debug=True)
 

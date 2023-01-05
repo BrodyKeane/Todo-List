@@ -13,6 +13,8 @@ body {
   min-width: 800px
 }
 
+
+
 footer {
   position: fixed;
   bottom: 0; /* position the footer at the bottom of the viewport */
@@ -58,16 +60,19 @@ ul {
 
 /* todo flex container */
 
-.todo{
+.todo_container{
   display: flex;
+  justify-content: space-between;
   padding-left: 2vw;
-  padding-right: 2vw;
-  padding: 0;
-  align-self: start;
+  padding-right: 4vw;
   line-height: 110%;
-  margin-bottom: 1vh;
-  margin-right: 1vw;
+  height: 2.5rem;
 }
+
+  .todo{
+    padding: 0;
+  }
+  
 
   .checkbox_button{
     background: transparent;
@@ -84,6 +89,30 @@ ul {
       content: url('/static/icons/checked.png');
       width: inherit;
       height: inherit;
+    }
+
+  .delete {
+    margin-left: auto;
+    justify-self: flex-end;
+  }
+
+    .retore_button,
+    .delete_button{
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+    margin-right: .5vw;
+  }
+
+
+
+    .retore_button:hover img,
+    .delete_button:hover img {
+      width: 1.6rem;
+      height: 1.6rem;
     }
 
 /* 
@@ -169,6 +198,10 @@ new todo form
           width: 1.6rem;
           height: 1.6rem;
         }
+
+
+
+
 /* 
 Nav bar
 */
