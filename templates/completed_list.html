@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="todo_list">
+    <h1>Completed Todo List</h1>
+  
+    <!-- display the list of todos -->
+    <ul>
+      {% for todo in completed_todos %}
+      <li>
+        <!-- create a complete button for each todo -->
+        <form action="{{ url_for('restore', index=loop.index0) }}" method="POST">
+          <div class="todo">
+            <button type="submit" class="retore_button">
+              <img class="icon" src="/static/icons/restore.png" alt="Remove Todo" width="100%" height="100%">
+            </button>
+            <a class="todo" href="{{ url_for('todo_details', index=loop.index0, completed='True') }}">{{ todo }}</a>
+          </div>
+          </form>          
+      </li>
+      {% endfor %}
+    </ul>
+
+
+{% endblock %}

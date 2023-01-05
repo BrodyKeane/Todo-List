@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<section id="todo_list">
+<section class="todo_list">
   <h1>Todo List</h1>
 
 
@@ -9,13 +9,13 @@
   <ul>
     {% for todo in todos %}
     <li>
-      <!-- create a delete button for each todo -->
-      <form action="{{ url_for('delete', index=loop.index0) }}" method="POST">
+      <!-- create a complete button for each todo -->
+      <form action="{{ url_for('complete', index=loop.index0) }}" method="POST">
         <div class="todo">
           <button type="submit" class="checkbox_button">
             <img class="icon" src="/static/icons//unchecked.png" alt="Remove Todo" width="100%" height="100%">
           </button>
-          <a class="todo" href="{{ url_for('todo_details', index=loop.index0) }}">{{ todo }}</a>
+          <a class="todo" href="{{ url_for('todo_details', index=loop.index0, completed='False') }}">{{ todo }}</a>
         </div>
         </form>          
     </li>

@@ -48,7 +48,7 @@ ul {
   height: 1.5rem;
 }
 
-#todo_list,
+.todo_list,
 #todo_details{
   margin: 7vh 30vw 10vh 30vw;
   padding: .5vw;
@@ -97,6 +97,7 @@ todo details form
 
   #todo_details_form textarea {
     background-color: #333;
+    resize: none;
     width: 99%;
     border: none;
     height: 50vh;
