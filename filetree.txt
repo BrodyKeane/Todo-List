@@ -1,0 +1,34 @@
+Folder PATH listing
+Volume serial number is ACD0-D0AF
+C:.
+|   app.py
+|   filetree.txt
+|   README.md
+|   
++---instance
+|       enironment.yml
+|       todoDB.db
+|       
++---src
+|       forms.py
+|       models.py
+|       routes.py
+|       
++---static
+|   |   
+|   +---css
+|   |       global-styles.css
+|   |       
+|   \---icons
+|           add.png
+|           checked.png
+|           delete.png
+|           restore.png
+|           unchecked.png
+|           
+\---templates
+        base.html
+        completed_list.html
+        main_list.html
+        todo_details.html
+        

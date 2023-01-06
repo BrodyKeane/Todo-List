@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 <section id="todo_details">
-    <h1>{{ todo }}</h1>
-    <form action="{{ url_for('add_details', index=index, completed=completed) }}" method="POST" spellcheck="false" autocomplete="off">
+    <h1>{{ todo.title }}</h1>
+    <form action="{{ url_for('add_details', id=todo.id) }}" method="POST" spellcheck="false" autocomplete="off">
         <div id="todo_details_form">
             {{ form.hidden_tag() }}
             {{ form.details(id='details-field', default=details, autofocus=autofocus) }}<br>
