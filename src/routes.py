@@ -3,8 +3,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 from app import app, db
-# from models import Todo
-from forms import TodoForm, AddDetailsForm
+from src.models import Todo
+from src.forms import TodoForm, AddDetailsForm
 
 
 #temporary storage to mimic db
