@@ -7,21 +7,27 @@ from src.models import Todo
 from src.forms import TodoForm, AddDetailsForm
 
 
-#temporary storage to mimic db
-todos = []
-todos_details_dict = {}
-completed_todos = []
+'''
+Sign in
+'''
+
+#Render sign in page
+@app.route('/', methods=['GET'])
+def sign_in():
+    return render_template('sign_in.html')
+
+
 
 
 '''
-Routes for "main_list.html"
+Todo List
 '''
 
 #route for uncompleted todos
-@app.route('/', methods=['GET'])
-def main_list():
+@app.route('/todo-list', methods=['GET'])
+def todo_list():
     todos = Todo.query.filter_by(is_complete = False)
-    return render_template('main_list.html', form=TodoForm(), todos=todos, autofocus=True)
+    return render_template('todo_list.html', form=TodoForm(), todos=todos, autofocus=True)
 
 #route for adding a todo to db
 @app.route('/submit', methods=['POST'])
@@ -32,7 +38,7 @@ def submit():
         db.session.add(new_todo)
         commit_changes()
         form.todo.data = ''
-    return redirect(url_for('main_list'))
+    return redirect(url_for('todo_list'))
 
 #route for completing todos
 @app.route('/complete/<int:id>', methods=['POST'])
@@ -42,10 +48,10 @@ def complete(id):
         todo.is_complete = True
         db.session.add(todo)
         commit_changes()
-    return redirect(url_for('main_list'))
+    return redirect(url_for('todo_list'))
 
 '''
-Routes for "todo_details.html"
+Todo Details
 '''
 
 #route to url with more info on selected todo
@@ -53,7 +59,7 @@ Routes for "todo_details.html"
 def todo_details(id):
     form = AddDetailsForm()
     if not todo_exists(id):
-        return redirect(url_for('main_list'))
+        return redirect(url_for('todo_list'))
     else:
         todo=Todo.query.get(id)
         form.details.data = todo.description
@@ -71,7 +77,7 @@ def add_details(id):
     return redirect(url_for('todo_details', id=id))      
 
 '''
-Routes for "completed_list.html"
+Completed List
 '''
 
 #route to page containing all completed todos
@@ -80,7 +86,7 @@ def completed_list():
     completed_todos = Todo.query.filter_by(is_complete = True)
     return render_template('completed_list.html', completed_todos=completed_todos )
 
-#restores todo back into main list
+#restores todo back into todo list
 @app.route('/completed-list/restore/<int:id>', methods=['POST'])
 def restore(id):
     if todo_exists(id):
@@ -99,6 +105,16 @@ def delete_todo(id):
     return redirect(url_for('completed_list'))
 
 '''
+Profile
+'''
+
+#Render profile page
+@app.route('/profile', methods=['GET'])
+def profile():
+    return render_template('profile.html')
+
+
+'''
 helper functions for db
 '''
 
@@ -115,3 +131,4 @@ def todo_exists(id):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
