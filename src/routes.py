@@ -1,23 +1,35 @@
-from flask import Flask, render_template, request, url_for, redirect, flash
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
-from wtforms.validators import DataRequired
+from flask import render_template, url_for, redirect
 from app import app, db
 from src.models import Todo
 from src.forms import TodoForm, AddDetailsForm
 
 
 '''
-Sign in
+Root
+'''
+
+#Deciides where user needs to go from root
+@app.route('/')
+def root():
+    return redirect(url_for('todo_list'))
+
+'''
+Sign Up
 '''
 
 #Render sign in page
-@app.route('/', methods=['GET'])
+@app.route('/sign-up', methods=['GET'])
+def sign_up():
+    return render_template('sign_up.html')
+
+'''
+Sign In
+'''
+
+#Render sign in page
+@app.route('/sign-in', methods=['GET'])
 def sign_in():
     return render_template('sign_in.html')
-
-
-
 
 '''
 Todo List
