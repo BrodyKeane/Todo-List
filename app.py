@@ -1,5 +1,4 @@
-from flask import Flask, render_template, redirect, url_for
-from src.forms import TodoForm, AddDetailsForm
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
