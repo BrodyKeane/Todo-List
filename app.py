@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask import url_for, redirect
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecretkey'
@@ -10,4 +11,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todoDB.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-import src.routes as routes 
+from src.routes import todo_list_routes, completed_list_routes, profile_routes, todo_details_routes, account_auth_routes
+
+if __name__ == '__main__':
+    app.run(debug=True)
