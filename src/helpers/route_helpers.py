@@ -4,10 +4,19 @@ from src.models.models import Todo
 from src.forms.forms import TodoForm, AddDetailsForm
 
 
- 
+# Todo-related functions
+
+def create_todo(form):
+    return Todo(title = form.todo.data)
+
+def complete_todo(todo):
+    todo.is_complete = True
+
+def restore_todo(todo):
+    todo.is_complete = False
+
 def todo_exists(id):
     return db.session.query(Todo).get(id) is not None
-
 
 def get_todo(id):
     return Todo.query.get(id)
@@ -18,17 +27,13 @@ def get_completed_todos():
 def get_uncompleted_todos():
     return Todo.query.filter_by(is_complete = False)
 
+def set_todo_description(form, todo):
+    todo.description = form.details.data
 
-def complete_todo(todo):
-    todo.is_complete = True
+def set_form_details(form, todo):
+    form.details.data = todo.description
 
-def restore_todo(todo):
-    todo.is_complete = False
-
-
-def create_todo(form):
-    return Todo(title = form.todo.data)
-
+# Database-related functions
 
 def add_to_session(item):
     db.session.add(item)
@@ -41,5 +46,3 @@ def try_commit(*args, **kwargs):
         db.session.commit(*args, **kwargs)
     except Exception:
         db.session.rollback()
-
-

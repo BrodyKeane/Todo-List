@@ -25,15 +25,12 @@ class Stats(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     total_todos = db.Column(db.Integer, index=True, default=0)
-    uncomplete_todos = db.Column(db.Integer, index=True, default=0)
-    complete_todos = db.Column(db.Integer, index=True, default=0)
-    completion_rate = db.Column(db.Float, index=True, default=0)
+    total_uncompleted_todos = db.Column(db.Integer, index=True, default=0)
+    total_completed_todos = db.Column(db.Integer, index=True, default=0)
+    todo_completion_rate = db.Column(db.Float, index=True, default=0)
     
     user = db.relationship('User', backref=db.backref('stats', uselist=False))
     
-
-
-
 
 
 @app.before_first_request

@@ -2,7 +2,7 @@ from flask import render_template, url_for, redirect, Blueprint
 from app import app, db
 from src.models.models import Todo
 from src.forms.forms import TodoForm
-from src.helpers.route_helpers import try_commit, todo_exists, get_todo, get_uncompleted_todos, create_todo, add_to_session
+from src.helpers.route_helpers import try_commit, todo_exists, get_todo, get_uncompleted_todos, create_todo, add_to_session, complete_todo
 
 todo_list_routes = Blueprint('todo_list_routes', __name__)
 
@@ -27,6 +27,7 @@ def submit():
 def complete(id):
     if todo_exists(id):
         todo = get_todo(id)
+        complete_todo(todo)
         add_to_session(todo)
         try_commit()
     return redirect(url_for('todo_list'))
