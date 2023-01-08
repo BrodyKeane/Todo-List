@@ -1,7 +1,7 @@
 from app import app, db
 from src.models.models import Todo
 from src.forms.forms import TodoForm, AddDetailsForm
-from src.helpers.route_helpers import commit_changes, todo_exists
+from src.helpers.route_helpers import try_commit, todo_exists
 from flask import render_template, url_for, redirect, Blueprint
 
 

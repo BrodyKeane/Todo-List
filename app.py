@@ -1,6 +1,5 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask import url_for, redirect
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecretkey'
