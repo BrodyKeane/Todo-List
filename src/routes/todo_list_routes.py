@@ -12,7 +12,7 @@ def todo_list():
     form = TodoForm()
     todos = todo_manager.get_uncompleted_todos()
     return render_template('todo_list.html', form=form, todos=todos, autofocus=True)
-
+ 
 
 @app.route('/submit', methods=['POST'])
 def submit():

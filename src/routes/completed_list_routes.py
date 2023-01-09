@@ -5,7 +5,7 @@ from src.helpers.route_helpers import TodoManager, DatabaseManager
 completed_list_routes = Blueprint('completed_list_routes', __name__)
 todo_manager = TodoManager()
 database_manager = DatabaseManager()
-
+ 
 
 @app.route('/completed-list', methods=["GET"])
 def completed_list():

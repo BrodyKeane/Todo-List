@@ -10,3 +10,7 @@ class FirstTestClass(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+class TodoManagerTest(unittest.TestCase):
+    def test_create_todo():
+        pass

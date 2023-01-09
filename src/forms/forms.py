@@ -8,9 +8,15 @@ class TodoForm(FlaskForm):
     submit = SubmitField('submit')
  
   
-class AddDetailsForm(FlaskForm):
-    details = TextAreaField('todo_details')
+class TodoDescriptionForm(FlaskForm):
+    description = TextAreaField('todo_descripton')
     submit = SubmitField('Submit Changes')
+
+    def get_form_description(self, form):
+        return form.description.data
+
+    def set_form_description(self, form, description):
+        form.description.data = description
 
 
 class RegistrationForm(FlaskForm):

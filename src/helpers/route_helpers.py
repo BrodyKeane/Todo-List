@@ -23,11 +23,20 @@ class TodoManager:
     def get_uncompleted_todos(self):
         return Todo.query.filter_by(is_complete = False)
 
-    def set_todo_description(self, form, todo):
-        todo.description = form.details.data
+    def get_todo_description(self, todo):
+        return todo.description
 
-    def set_form_details(self, form, todo):
-        form.details.data = todo.description
+    def set_todo_description(self, todo, description):
+        todo.description = description
+
+
+class FormManager:
+    def get_form_description(self, form):
+        return form.description.data
+
+    def set_form_description(self, form, description):
+        form.description.data = description
+
 
 class DatabaseManager:
 
@@ -42,4 +51,8 @@ class DatabaseManager:
             db.session.commit(*args, **kwargs)
         except:
             db.session.rollback()
+
+    def add_to_database(self, item):
+        self.add_to_session(item)
+        self.commit()
 

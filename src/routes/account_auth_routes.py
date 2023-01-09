@@ -1,6 +1,6 @@
 from app import app, db
 from src.models.models import Todo
-from src.forms.forms import TodoForm, AddDetailsForm
+from src.forms.forms import TodoForm, TodoDescriptionForm
 from src.helpers.route_helpers import TodoManager, DatabaseManager
 from flask import render_template, url_for, redirect, Blueprint
 

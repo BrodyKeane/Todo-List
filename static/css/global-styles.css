@@ -51,7 +51,7 @@ ul {
 }
 
 .todo_list,
-#todo_details{
+#todo_description{
   margin: 7vh 30vw 10vh 30vw;
   padding: .5vw;
   border: 1px solid gray;
@@ -116,15 +116,15 @@ ul {
     }
 
 /* 
-todo details form
+todo description form
 */
-#todo_details_form{
+#todo_description_form{
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-  #todo_details_form textarea {
+  #todo_description_form textarea {
     background-color: #333;
     resize: none;
     width: 99%;
@@ -136,7 +136,7 @@ todo details form
     padding-left: 1vw;
   }
 
-  #todo_details_form textarea:focus{
+  #todo_description_form textarea:focus{
     background-color: #333;
     width: 99%;
     border: none;
