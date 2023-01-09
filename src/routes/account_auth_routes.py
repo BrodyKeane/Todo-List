@@ -9,14 +9,14 @@ account_auth_routes = Blueprint('account_auth_routes', __name__)
 
 @app.route('/')
 def root():
-    return redirect(url_for('todo_list'))
+    return redirect(url_for('render_todo_list'))
 
 
 @app.route('/sign-up', methods=['GET'])
-def sign_up():
+def render_sign_up():
     return render_template('sign_up.html')
 
 
 @app.route('/sign-in', methods=['GET'])
-def sign_in():
+def render_sign_in():
     return render_template('sign_in.html')
