@@ -1,48 +1,45 @@
-from flask import render_template, url_for, redirect
 from app import db
 from src.models.models import Todo
-from src.forms.forms import TodoForm, AddDetailsForm
 
+class TodoManager:
+    def create_todo(self, form):
+        return Todo(title = form.todo.data)
 
-# Todo-related functions
+    def complete_todo(self, todo):
+        todo.is_complete = True
 
-def create_todo(form):
-    return Todo(title = form.todo.data)
+    def restore_todo(self, todo):
+        todo.is_complete = False
 
-def complete_todo(todo):
-    todo.is_complete = True
+    def todo_exists(self, id):
+        return db.session.query(Todo).get(id) is not None
 
-def restore_todo(todo):
-    todo.is_complete = False
+    def get_todo(self, id):
+        return Todo.query.get(id)
 
-def todo_exists(id):
-    return db.session.query(Todo).get(id) is not None
+    def get_completed_todos(self):
+        return Todo.query.filter_by(is_complete = True)
 
-def get_todo(id):
-    return Todo.query.get(id)
+    def get_uncompleted_todos(self):
+        return Todo.query.filter_by(is_complete = False)
 
-def get_completed_todos():
-    return Todo.query.filter_by(is_complete = True)
+    def set_todo_description(self, form, todo):
+        todo.description = form.details.data
 
-def get_uncompleted_todos():
-    return Todo.query.filter_by(is_complete = False)
+    def set_form_details(self, form, todo):
+        form.details.data = todo.description
 
-def set_todo_description(form, todo):
-    todo.description = form.details.data
+class DatabaseManager:
 
-def set_form_details(form, todo):
-    form.details.data = todo.description
+    def add_to_session(self, item):
+        db.session.add(item)
 
-# Database-related functions
+    def delete_from_session(self, item):
+        db.session.delete(item)
 
-def add_to_session(item):
-    db.session.add(item)
+    def commit(self, *args, **kwargs):
+        try:
+            db.session.commit(*args, **kwargs)
+        except:
+            db.session.rollback()
 
-def delete_from_session(item):
-    db.session.delete(item)
-
-def try_commit(*args, **kwargs):
-    try:
-        db.session.commit(*args, **kwargs)
-    except Exception:
-        db.session.rollback()
