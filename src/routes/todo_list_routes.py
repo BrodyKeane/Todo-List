@@ -1,7 +1,8 @@
 from flask import render_template, url_for, redirect, Blueprint
 from app import app, db
 from src.forms.forms import TodoForm
-from src.helpers.route_helpers import TodoManager, DatabaseManager
+from src.database.todo_manager import TodoManager
+from src.database.database_manager import DatabaseManager
 
 todo_list_routes = Blueprint('todo_list_routes', __name__)
 todo_manager = TodoManager()

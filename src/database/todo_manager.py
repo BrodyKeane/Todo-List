@@ -1,5 +1,8 @@
 from app import db
-from src.models.models import Todo
+from src.database.models import Todo
+from src.database.database_manager import DatabaseManager
+
+database_manager = DatabaseManager()
 
 class TodoManager:
     def create_todo(self, form):
@@ -28,31 +31,10 @@ class TodoManager:
 
     def set_todo_description(self, todo, description):
         todo.description = description
+        database_manager.add_to_database(todo)
 
 
-class FormManager:
-    def get_form_description(self, form):
-        return form.description.data
-
-    def set_form_description(self, form, description):
-        form.description.data = description
 
 
-class DatabaseManager:
 
-    def add_to_session(self, item):
-        db.session.add(item)
-
-    def delete_from_session(self, item):
-        db.session.delete(item)
-
-    def commit(self, *args, **kwargs):
-        try:
-            db.session.commit(*args, **kwargs)
-        except:
-            db.session.rollback()
-
-    def add_to_database(self, item):
-        self.add_to_session(item)
-        self.commit()
 
