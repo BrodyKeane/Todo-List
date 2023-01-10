@@ -6,8 +6,8 @@ database_manager = DatabaseManager()
 
 class TodoManager:
 
-    def create_todo(form):
-        return Todo(form.details.data)
+    def create_todo(self, form):
+        return Todo(form.todo.data)
 
     def todo_exists(self, id):
         return db.session.query(Todo).get(id) is not None
