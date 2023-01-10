@@ -2,7 +2,7 @@ from flask import render_template, url_for, redirect, Blueprint
 from app import app, db
 from src.database.models import Todo
 from src.forms.forms import TodoForm, TodoDescriptionForm
-from src.database.todo_manager import TodoManager
+from src.database.query import TodoManager
 from src.database.database_manager import DatabaseManager
 
 

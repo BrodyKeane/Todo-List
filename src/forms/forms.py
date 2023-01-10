@@ -12,16 +12,16 @@ class TodoDescriptionForm(FlaskForm):
     description = TextAreaField('todo_descripton')
     submit = SubmitField('Submit Changes')
 
-    def get_form_description(self, form):
-        return form.description.data
+    def get_description(self):
+        return self.description.data
 
-    def set_form_description(self, form, description):
-        form.description.data = description
+    def set_description(self, description):
+        self.description.data = description
 
 class RegistrationForm(FlaskForm):
   username = StringField('Username', validators=[DataRequired()])
   email = StringField('Email', validators=[DataRequired(), Email()])
   password = PasswordField('Password', validators=[DataRequired()])
   password2 = PasswordField('Repeat Password', validators=[DataRequired(), EqualTo('password')])
-  submit = SubmitField('Register')
+  submit = SubmitField('Register') 
 

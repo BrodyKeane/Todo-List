@@ -1,7 +1,8 @@
 from flask import render_template, url_for, redirect, Blueprint
 from app import app, db
-from src.database.todo_manager import TodoManager
+from src.database.query import TodoManager
 from src.database.database_manager import DatabaseManager
+from src.database.models import Todo
 
 completed_list_routes = Blueprint('completed_list_routes', __name__)
 todo_manager = TodoManager()
@@ -18,9 +19,8 @@ def render_completed_list():
 def restore_todo(id):
     if todo_manager.todo_exists(id): 
         todo = todo_manager.get_todo(id)
-        todo_manager.restore_todo(todo)
-        database_manager.add_to_session(todo)
-        database_manager.commit()
+        todo.restore()
+        database_manager.add_to_database(todo)
     return redirect(url_for('render_completed_list'))
 
 
@@ -28,6 +28,5 @@ def restore_todo(id):
 def delete_todo(id):
     if todo_manager.todo_exists(id):
         todo = todo_manager.get_todo(id)
-        database_manager.delete_from_session(todo)
-        database_manager.commit()
+        database_manager.remove_from_database(todo)
     return redirect(url_for('render_completed_list'))
