@@ -14,11 +14,10 @@ class DatabaseManager:
         except:
             db.session.rollback()
 
-    def add_to_database(self, item):
+    def save_to_database(self, item):
         self.add_to_session(item)
         self.commit()
 
     def remove_from_database(self, item):
         self.remove_from_session(item)
         self.commit()
- 

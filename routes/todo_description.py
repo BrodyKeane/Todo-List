@@ -1,11 +1,12 @@
 from flask import render_template, url_for, redirect, Blueprint
+
 from config import app
 from forms.forms import TodoDescriptionForm
-from database.query import TodoManager
+from database.data_access_objects import TodoTable
 from database.database_manager import DatabaseManager
 
 todo_description_routes = Blueprint('todo_description_routes', __name__)
-todo_manager = TodoManager()
+todo_manager = TodoTable()
 database_manager = DatabaseManager()
 
 
@@ -31,5 +32,5 @@ def submit_description(todo_id):
         todo = todo_manager.get_todo(todo_id)
         description = form.get_description()
         todo.description = description
-        database_manager.add_to_database(todo)
+        database_manager.save_to_database(todo)
     return redirect(url_for('render_todo_description', todo_id=todo_id))

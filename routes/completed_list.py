@@ -1,10 +1,11 @@
 from flask import render_template, url_for, redirect, Blueprint
+
 from config import app
 from database.database_manager import DatabaseManager
-from database.query import TodoManager
+from database.data_access_objects import TodoTable
 
 completed_list_routes = Blueprint('completed_list_routes', __name__)
-todo_manager = TodoManager()
+todo_manager = TodoTable()
 database_manager = DatabaseManager()
 
 
@@ -19,7 +20,7 @@ def restore_todo(todo_id):
     if todo_manager.todo_exists(todo_id):
         todo = todo_manager.get_todo(todo_id)
         todo.restore()
-        database_manager.add_to_database(todo)
+        database_manager.save_to_database(todo)
     return redirect(url_for('render_completed_list'))
 
 

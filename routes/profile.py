@@ -1,7 +1,6 @@
-from flask import render_template, url_for, redirect, Blueprint
-from config import app, db
-from database.query import TodoManager
-from database.database_manager import DatabaseManager
+from flask import render_template, Blueprint
+
+from config import app
 
 profile_routes = Blueprint('profile_routes', __name__)
 

@@ -1,8 +1,6 @@
 from flask import render_template, url_for, redirect, Blueprint
-from config import app, db
-from forms.forms import TodoForm, TodoDescriptionForm
-from database.query import TodoManager
-from database.database_manager import DatabaseManager
+
+from config import app
 
 account_auth_routes = Blueprint('account_auth_routes', __name__)
 

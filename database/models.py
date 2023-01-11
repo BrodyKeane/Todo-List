@@ -1,7 +1,10 @@
 from datetime import datetime
 from flask_login import UserMixin
-from config import app, db
 
+from config import app, db
+from .database_manager import DatabaseManager
+
+database_manager = DatabaseManager()
 
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -16,6 +19,8 @@ class Todo(db.Model):
         self.title = title
         self.description = ''
         self.is_complete = False
+
+
 
     def complete(self):
         self.is_complete = True

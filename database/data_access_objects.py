@@ -4,9 +4,12 @@ from .database_manager import DatabaseManager
 database_manager = DatabaseManager()
 
 
-class TodoManager:
-    def create_todo(self, form):
-        return Todo(form.todo.data)
+class TodoTable:
+    def save_form_as_todo(self, form):
+        todo_title = form.get_todo_title()
+        new_todo = Todo(todo_title)
+        database_manager.save_to_database(new_todo)
+        return new_todo
 
     def todo_exists(self, todo_id):
         return Todo.query.get(todo_id) is not None
