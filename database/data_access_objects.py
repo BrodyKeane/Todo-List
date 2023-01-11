@@ -22,6 +22,15 @@ class TodoTable:
         todo.complete()
         database_manager.save_to_database(todo)
 
+    def restore_todo(self, todo_id):
+        todo = self.get_todo(todo_id)
+        todo.restore()
+        database_manager.save_to_database(todo)
+
+    def delete_todo(self, todo_id):
+        todo = self.get_todo(todo_id)
+        database_manager.remove_from_database(todo)
+
     def todo_exists(self, todo_id):
         return Todo.query.get(todo_id) is not None
 

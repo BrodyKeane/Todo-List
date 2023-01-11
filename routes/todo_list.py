@@ -1,5 +1,5 @@
 """
-This module provides functionality for managing todo items in a web application.
+This module provides functionality for managing todo items in the app.
 It defines three main routes:
 - '/todo-list' route for rendering a template displaying the list of todos
 - '/submit' route for handling the submission of new todos
@@ -51,7 +51,7 @@ def submit_todo():
 
 
 @app.route('/complete/<int:todo_id>', methods=['POST'])
-def complete_todo(todo_id): 
+def complete_todo(todo_id):
     """
     Handle the completion of an existing todo by the user.
     The function uses the todo_table data access object to complete the todo

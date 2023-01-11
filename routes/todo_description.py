@@ -1,5 +1,5 @@
 """
-This module provides functionality for the todo descriptions.
+This module provides functionality for todo descriptions in the app.
 It defines three main routes:
 - '/todo/<int:todo_id>' route for rendering a template displaying the todo's
     description
@@ -43,7 +43,8 @@ def render_todo_description(todo_id):
 
 @app.route('/todo/<int:todo_id>/description', methods=['POST'])
 def submit_description(todo_id):
-    """Handles description submition from user
+    """
+        Handles description submition from user
 
     Args:
         todo_id (int): id for todo in database
