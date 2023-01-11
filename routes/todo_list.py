@@ -28,7 +28,7 @@ def render_todo_list():
     """
     Renders the todo list page.
     The function uses TodoForm to generate the form and uses the todo_table
-    data access object to retrieve all of the users completed todos from the
+    data access object to retrieve all of the users uncompleted todos from the
     database
     """
     form = TodoForm()
@@ -51,7 +51,7 @@ def submit_todo():
 
 
 @app.route('/complete/<int:todo_id>', methods=['POST'])
-def complete_todo(todo_id):
+def complete_todo(todo_id): 
     """
     Handle the completion of an existing todo by the user.
     The function uses the todo_table data access object to complete the todo

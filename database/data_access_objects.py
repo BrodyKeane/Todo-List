@@ -28,9 +28,3 @@ class TodoTable:
     def get_uncompleted_todos(self):
         return Todo.query.filter_by(is_complete = False)
 
-
-
-
-
-
-
