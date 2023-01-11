@@ -11,6 +11,12 @@ class TodoTable:
         database_manager.save_to_database(new_todo)
         return new_todo
 
+    def save_todo_description(self, todo_id, form):
+        todo = self.get_todo(todo_id)
+        description = form.get_description()
+        todo.description = description
+        database_manager.save_to_database(todo)
+
     def complete_todo(self, todo_id):
         todo = self.get_todo(todo_id)
         todo.complete()

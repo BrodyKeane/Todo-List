@@ -19,24 +19,39 @@ from database.data_access_objects import TodoTable
 from database.database_manager import DatabaseManager
 
 todo_description_routes = Blueprint('todo_description_routes', __name__)
-todo_manager = TodoTable()
+todo_table = TodoTable()
 database_manager = DatabaseManager()
 
 
 @app.route('/todo/<int:todo_id>/', methods=['GET'])
 def render_todo_description(todo_id):
-    if not todo_manager.todo_exists(todo_id):
+    """
+        Renders description page for todos
+
+    Args:
+        todo_id (int): id for todo in database
+
+    Returns:
+        html page with todo description form
+    """
+    if not todo_table.todo_exists(todo_id):
         return redirect(url_for('todo_list'))
-    todo = todo_manager.get_todo(todo_id)
+    todo = todo_table.get_todo(todo_id)
     form = TodoDescriptionForm.get_form_with_description(todo)
     return render_template('todo_description.html', form=form, todo=todo)
 
+
 @app.route('/todo/<int:todo_id>/description', methods=['POST'])
 def submit_description(todo_id):
+    """Handles description submition from user
+
+    Args:
+        todo_id (int): id for todo in database
+
+    Returns:
+        redirects back to description page
+    """
     form = TodoDescriptionForm()
     if form.validate_on_submit():
-        todo = todo_manager.get_todo(todo_id)
-        description = form.get_description()
-        todo.description = description
-        database_manager.save_to_database(todo)
+        todo_table.save_todo_description(todo_id, form)
     return redirect(url_for('render_todo_description', todo_id=todo_id))
