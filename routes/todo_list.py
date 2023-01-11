@@ -1,20 +1,20 @@
 from flask import render_template, url_for, redirect, Blueprint
-from app import app, db
+from config import app
 from forms.forms import TodoForm
 from database.query import TodoManager
 from database.database_manager import DatabaseManager
-from database.models import Todo
 
 todo_list_routes = Blueprint('todo_list_routes', __name__)
 todo_manager = TodoManager()
 database_manager = DatabaseManager()
+
 
 @app.route('/todo-list', methods=['GET'])
 def render_todo_list():
     form = TodoForm()
     todos = todo_manager.get_uncompleted_todos()
     return render_template('todo_list.html', form=form, todos=todos, autofocus=True)
- 
+
 
 @app.route('/submit', methods=['POST'])
 def submit_todo():

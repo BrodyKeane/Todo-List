@@ -1,11 +1,11 @@
 from flask import render_template, url_for, redirect, Blueprint
-from app import app, db
+from config import app, db
 from forms.forms import TodoForm, TodoDescriptionForm
 from database.query import TodoManager
 from database.database_manager import DatabaseManager
 
-
 account_auth_routes = Blueprint('account_auth_routes', __name__)
+
 
 @app.route('/')
 def root():

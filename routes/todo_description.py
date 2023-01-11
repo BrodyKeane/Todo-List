@@ -1,5 +1,5 @@
 from flask import render_template, url_for, redirect, Blueprint
-from app import app
+from config import app
 from forms.forms import TodoDescriptionForm
 from database.query import TodoManager
 from database.database_manager import DatabaseManager
@@ -7,6 +7,7 @@ from database.database_manager import DatabaseManager
 todo_description_routes = Blueprint('todo_description_routes', __name__)
 todo_manager = TodoManager()
 database_manager = DatabaseManager()
+
 
 @app.route('/todo/<int:todo_id>/', methods=['GET'])
 def render_todo_description(todo_id):
@@ -21,6 +22,7 @@ def get_todo_description_form(todo):
     form = TodoDescriptionForm()
     form.set_description(description)
     return form
+
 
 @app.route('/todo/<int:todo_id>/description', methods=['POST'])
 def submit_description(todo_id):

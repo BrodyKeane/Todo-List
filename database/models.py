@@ -1,6 +1,7 @@
 from datetime import datetime
 from flask_login import UserMixin
-from app import app, db
+from config import app, db
+
 
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key = True)

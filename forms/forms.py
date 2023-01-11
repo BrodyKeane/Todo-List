@@ -18,6 +18,7 @@ class TodoDescriptionForm(FlaskForm):
     def set_description(self, description):
         self.description.data = description
 
+
 class RegistrationForm(FlaskForm):
   username = StringField('Username', validators=[DataRequired()])
   email = StringField('Email', validators=[DataRequired(), Email()])

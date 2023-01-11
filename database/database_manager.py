@@ -1,7 +1,7 @@
-from app import db
+from config import db
+
 
 class DatabaseManager:
-
     def add_to_session(self, item):
         db.session.add(item)
 

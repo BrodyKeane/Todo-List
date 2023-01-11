@@ -1,5 +1,5 @@
 from flask import render_template, url_for, redirect, Blueprint
-from app import app
+from config import app
 from database.database_manager import DatabaseManager
 from database.query import TodoManager
 
@@ -21,6 +21,7 @@ def restore_todo(todo_id):
         todo.restore()
         database_manager.add_to_database(todo)
     return redirect(url_for('render_completed_list'))
+
 
 @app.route('/completed/delete/<int:todo_id>', methods=['POST'])
 def delete_todo(todo_id):
