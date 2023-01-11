@@ -10,13 +10,13 @@
     <li>
       <!-- create a complete button for each todo -->
       <div class="todo_container">
-        <form action="{{ url_for('restore_todo', id=todo.id) }}" method="POST">
+        <form action="{{ url_for('restore_todo', todo_id=todo.id) }}" method="POST">
           <button type="submit" class="restore_button">
             <img class="icon" src="/static/icons/restore.png" alt="Restore Todo" width="100%" height="100%">
           </button>
         </form>
-        <a class="todo" href="{{ url_for('render_todo_description', id=todo.id) }}">{{ todo.title }}</a>
-        <form  action="{{ url_for('delete_todo', id=todo.id) }}" method="POST">
+        <a class="todo" href="{{ url_for('render_todo_description', todo_id=todo.id) }}">{{ todo.title }}</a>
+        <form  action="{{ url_for('delete_todo', todo_id=todo.id) }}" method="POST">
           <button type="submit" class="delete_button">
             <img class="icon" src="/static/icons/delete.png" alt="Delete Todo" width="100%" height="100%">
           </button>

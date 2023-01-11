@@ -1,6 +1,6 @@
-from app import app, db
 from datetime import datetime
 from flask_login import UserMixin
+from app import app, db
 
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -15,36 +15,12 @@ class Todo(db.Model):
         self.title = title
         self.description = ''
         self.is_complete = False
-    
-    def get_id(self):
-        return self.id
-
-    def get_user_id(self):
-        return self.user_id
-
-    def get_title(self):
-        return self.title
-
-    def get_description(self):
-        return self.description
-
-    def set_user_id(self, user_id):
-        self.user_id = user_id
-
-    def set_title(self, title):
-        self.title = title
-    
-    def set_description(self, description):
-        self.description = description 
 
     def complete(self):
         self.is_complete = True
 
     def restore(self):
         self.is_complete = False
-
-
-
 
 
 class User(UserMixin, db.Model):
@@ -55,7 +31,6 @@ class User(UserMixin, db.Model):
     joined_at = db.Column(db.DateTime(), index=True, default=datetime.utcnow)
 
 
-
 class Stats(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
@@ -63,9 +38,8 @@ class Stats(db.Model):
     total_uncompleted_todos = db.Column(db.Integer, index=True, default=0)
     total_completed_todos = db.Column(db.Integer, index=True, default=0)
     todo_completion_rate = db.Column(db.Float, index=True, default=0)
-    
+
     user = db.relationship('User', backref=db.backref('stats', uselist=False))
-    
 
 
 @app.before_first_request

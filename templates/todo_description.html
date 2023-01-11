@@ -2,7 +2,7 @@
 {% block content %}
 <section id="todo_description">
     <h1>{{ todo.title }}</h1>
-    <form action="{{ url_for('submit_description', id=todo.id) }}" method="POST" spellcheck="false" autocomplete="off">
+    <form action="{{ url_for('submit_description', todo_id=todo.id) }}" method="POST" spellcheck="false" autocomplete="off">
         <div id="todo_description_form">
             {{ form.hidden_tag() }}
             {{ form.description(id='description-field', default=description, autofocus=autofocus) }}<br>
