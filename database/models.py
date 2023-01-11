@@ -1,12 +1,35 @@
+"""
+This module creates the database for the todo list app
+It creates three tables:
+- 'Todo' The Todo table is used to store information about each individual todo
+- 'User' The User table contains the users account info and links their todos
+   and stats
+- 'Stats' The Stats table contains the users stats related to their todo history
+
+Datetime is user to keep records of dates
+UserMixin is imported from flask_login to help with the User table
+The app and database are imported from config so they can be directly accessed
+"""
 from datetime import datetime
 from flask_login import UserMixin
 
 from config import app, db
-from .database_manager import DatabaseManager
-
-database_manager = DatabaseManager()
 
 class Todo(db.Model):
+    """
+    Table for containing todo data. Only accepts title on initialization.
+
+    Todo Table:
+        -id: Primary key for all todos
+
+        -user_id: Foreign key that like to the user that owns the todo
+
+        -title: Title of the todo
+
+        -description: Description of the todo if given
+
+        -is_complete: Boolean state of todo
+    """
     id = db.Column(db.Integer, primary_key = True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     title = db.Column(db.String(200), index = True)
@@ -16,20 +39,37 @@ class Todo(db.Model):
     user = db.relationship('User', backref=db.backref('todo', uselist=False))
 
     def __init__(self, title):
+        """
+        Creates Todo object
+
+        Args:
+            title (string): title of todo
+        """
         self.title = title
         self.description = ''
         self.is_complete = False
 
-
+    def set_description(self, description):
+        """
+        Updates the todo description
+        """
+        self.description = description
 
     def complete(self):
+        """
+        Marks the todo as complete
+        """
         self.is_complete = True
 
     def restore(self):
+        """
+        Marks the todo as uncomplete
+        """
         self.is_complete = False
 
 
 class User(UserMixin, db.Model):
+    """Incomplete"""
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
@@ -38,6 +78,7 @@ class User(UserMixin, db.Model):
 
 
 class Stats(db.Model):
+    """Incomplete"""
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     total_todos = db.Column(db.Integer, index=True, default=0)
@@ -50,4 +91,5 @@ class Stats(db.Model):
 
 @app.before_first_request
 def create_tables():
+    """Creates the tables before the first request is made"""
     db.create_all()
