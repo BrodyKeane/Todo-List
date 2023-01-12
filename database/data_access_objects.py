@@ -9,7 +9,7 @@ from .database_manager import DatabaseManager
 from config import db
 
 database_manager = DatabaseManager()
-
+session = db.session
 
 class TodoTable:
     """

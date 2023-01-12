@@ -9,38 +9,38 @@ class DatabaseManager:
     """
     Responsible for all updates to the database
     """
-    def save_to_database(self, item):
+    def save_to_database(self, session, item):
         """
         Directly saves item to database
         """
-        self.add_to_session(item)
-        self.commit()
+        self.add_to_session(session, item)
+        self.commit(session)
 
-    def remove_from_database(self, item):
+    def remove_from_database(self, session, item):
         """
         Directly removes item from
         """
-        self.remove_from_session(item)
-        self.commit()
+        self.remove_from_session(session, item)
+        self.commit(session)
 
-    def add_to_session(self, item):
+    def add_to_session(self, session, item):
         """
         Adds item to the current session
         """
-        db.session.add(item)
+        session.add(item)
 
-    def remove_from_session(self, item):
+    def remove_from_session(self, session, item):
         """
         Removes the item from the session
         """
-        db.session.delete(item)
+        session.delete(item)
 
-    def commit(self, *args, **kwargs):
+    def commit(self, session, *args, **kwargs):
         """
         Trys to commit all session changes to database if they are valaid
         """
         try:
-            db.session.commit(*args, **kwargs)
+            session.commit(*args, **kwargs)
         except:
-            db.session.rollback()
+            session.rollback()
             
