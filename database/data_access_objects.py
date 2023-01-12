@@ -6,6 +6,7 @@ The models and database modules are imported to handle all database intereractio
 """
 from .models import Todo
 from .database_manager import DatabaseManager
+from config import db
 
 database_manager = DatabaseManager()
 
@@ -69,22 +70,23 @@ class TodoTable:
         """
         if the todo exists returns True; else returns False
         """
-        return Todo.query.get(todo_id) is not None
+        return db.session.query(Todo).get(todo_id) is not None
+
 
     def get_todo(self, todo_id):
         """
         Gets the todo object from the database
         """
-        return Todo.query.get(todo_id)
+        return db.session.query(Todo).get(todo_id)
 
     def get_completed_todos(self):
         """
         Gets all of the users completed todos from the database
         """
-        return Todo.query.filter_by(is_complete = True)
+        return db.session.query(Todo).filter_by(is_complete = True).all()
 
     def get_uncompleted_todos(self):
         """
         Gets all of the users uncompleted todos from the database
         """
-        return Todo.query.filter_by(is_complete = False)
+        return db.session.query(Todo).filter_by(is_complete=False).all()

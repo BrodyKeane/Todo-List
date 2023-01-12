@@ -1,3 +1,6 @@
+"""
+This module uses flask to create and configure the app and uses SQLAlchemy to create the database for storing all of users data
+"""
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 

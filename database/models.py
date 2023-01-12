@@ -10,12 +10,16 @@ Datetime is user to keep records of dates
 UserMixin is imported from flask_login to help with the User table
 The app and database are imported from config so they can be directly accessed
 """
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import create_engine
 from datetime import datetime
 from flask_login import UserMixin
 
 from config import app, db
 
-class Todo(db.Model):
+Base = declarative_base()
+
+class Todo(Base):
     """
     Table for containing todo data. Only accepts title on initialization.
 
@@ -30,13 +34,14 @@ class Todo(db.Model):
 
         -is_complete: Boolean state of todo
     """
+    __tablename__ = 'Todo'
     id = db.Column(db.Integer, primary_key = True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    # user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     title = db.Column(db.String(200), index = True)
     description = db.Column(db.String(1000), index = True, default = '')
     is_complete = db.Column(db.Boolean, index=True, default=False)
 
-    user = db.relationship('User', backref=db.backref('todo', uselist=False))
+    # user = db.relationship('User', backref=db.backref('todo', uselist=False))
 
     def __init__(self, title):
         """
@@ -68,28 +73,31 @@ class Todo(db.Model):
         self.is_complete = False
 
 
-class User(UserMixin, db.Model):
-    """Incomplete"""
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), index=True, unique=True)
-    email = db.Column(db.String(120), index=True, unique=True)
-    password_hash = db.Column(db.String(128))
-    joined_at = db.Column(db.DateTime(), index=True, default=datetime.utcnow)
+# class User(UserMixin, Base):
+#     """Incomplete"""
+#     __tablename__ = 'User'
+#     id = db.Column(db.Integer, primary_key=True)
+#     username = db.Column(db.String(64), index=True, unique=True)
+#     email = db.Column(db.String(120), index=True, unique=True)
+#     password_hash = db.Column(db.String(128))
+#     joined_at = db.Column(db.DateTime(), index=True, default=datetime.utcnow)
 
 
-class Stats(db.Model):
-    """Incomplete"""
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    total_todos = db.Column(db.Integer, index=True, default=0)
-    total_uncompleted_todos = db.Column(db.Integer, index=True, default=0)
-    total_completed_todos = db.Column(db.Integer, index=True, default=0)
-    todo_completion_rate = db.Column(db.Float, index=True, default=0)
+# class Stats(Base):
+#     """Incomplete"""
+#     __tablename__ = 'Stats'
+#     id = db.Column(db.Integer, primary_key=True)
+#     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+#     total_todos = db.Column(db.Integer, index=True, default=0)
+#     total_uncompleted_todos = db.Column(db.Integer, index=True, default=0)
+#     total_completed_todos = db.Column(db.Integer, index=True, default=0)
+#     todo_completion_rate = db.Column(db.Float, index=True, default=0)
 
-    user = db.relationship('User', backref=db.backref('stats', uselist=False))
+#     user = db.relationship('User', backref=db.backref('stats', uselist=False))
 
 
 @app.before_first_request
 def create_tables():
     """Creates the tables before the first request is made"""
-    db.create_all()
+    engine = create_engine('sqlite:///todoDB.db')
+    Base.metadata.create_all(bind=engine)
