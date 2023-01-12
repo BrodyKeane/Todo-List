@@ -1,7 +1,7 @@
 import unittest
 
 def run_tests():
-    test_dir = '.'
+    test_dir = 'test'
     suite = unittest.defaultTestLoader.discover(test_dir)
     unittest.TextTestRunner().run(suite)
 

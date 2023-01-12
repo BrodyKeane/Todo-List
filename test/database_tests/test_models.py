@@ -2,7 +2,7 @@ import unittest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from database.models import Todo, Base
+from database.models import Todo
 
 class TodoTest(unittest.TestCase):
     def setUp(self):
@@ -10,7 +10,6 @@ class TodoTest(unittest.TestCase):
         self.engine = create_engine('sqlite:///test.db')
         Session = sessionmaker(bind=self.engine)
         self.session = Session()
-        Base.metadata.create_all(self.engine)
 
     def test_create_todo(self):
         # test creating a new todo
