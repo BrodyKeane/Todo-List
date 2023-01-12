@@ -2,7 +2,7 @@ import unittest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from database.models import Todo
+from database.models import Todo, Base
 
 class TodoTestCase(unittest.TestCase):
     def setUp(self):
@@ -62,5 +62,4 @@ class TodoTestCase(unittest.TestCase):
         self.session.commit()
         self.session.close()
         self.engine.dispose()
-
 
