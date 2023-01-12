@@ -7,5 +7,3 @@ There is a seperate page where all completed todos are stored. You can choose to
 All todos and their details are stored in a database for later use.
 
 //Not Completed//
-
-
