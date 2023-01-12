@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/global-styles.css') }}">
+    <title>Todo List App</title>
+    <nav>
+        <ul>
+          <li><a href="/todo-list">Todo List</a></li>
+          <li><a href="/completed-list">Completed</a></li>
+          <li><a href="/profile">Profile</a></li>
+        </ul>
+      </nav>      
+</head>
+<body>
+{% block content %}{% endblock %}
+</body>
+<footer>
+  <div class="footer-container">
+    <a href="https://www.flaticon.com/free-icons/checkbox" title="checkbox icons">Checkbox icons created by Kushal Jain - Flaticon</a>
+    <a href="https://www.flaticon.com/free-icons/add" title="add icons">Add icons created by reussy - Flaticon</a>
+    <a href="https://www.flaticon.com/free-icons/go-back" title="go back icons">Go back icons created by bsd - Flaticon</a>
+    <a href="https://www.flaticon.com/free-icons/x" title="x icons">X icons created by Stockio - Flaticon</a>
+  </div>
+</footer>
+</html>
+  
